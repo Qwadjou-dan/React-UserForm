@@ -48,9 +48,9 @@ function EditUsersForm({ user, handleEditUser }) {
       <dialog ref={modalRef} id="my_modal_1" className="modal">
         <div>
           <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
+            <h3 className="font-bold text-lg">Edit!</h3>
             <form className="flex flex-col gap-5 " onSubmit={handleSubmit}>
-              <h1 className="text-3xl font-bold">Student Form</h1>
+              <h1 className="text-xl font-bold">Student Form</h1>
               <label className="input input-bordered flex items-center gap-2">
                 <IoMdPerson />
                 <input
@@ -85,7 +85,7 @@ function EditUsersForm({ user, handleEditUser }) {
 
               <div className="modal-action">
                 {/* Close button */}
-                <button className="btn" onClick={closeModal}>
+                <button className="btn btn-error" onClick={closeModal}>
                   Close
                 </button>
               </div>

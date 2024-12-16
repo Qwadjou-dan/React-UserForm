@@ -3,26 +3,26 @@ import Users from "./Components/Users";
 import UsersForm from "./Components/UsersForm";
 
 const App = () => {
-  const [students, setStudents] = useState([
-    {
-      name: "Daniel",
-      email: "dan@gmail.com",
-      gen: 29,
-    },
-    {
-      name: "David",
-      email: "dave@gmail.com",
-      gen: 30,
-    },
-    {
-      name: "Esther",
-      email: "est@gmail.com",
-      gen: 20,
-    },
-  ]);
+  const [students, setStudents] = useState([]);
 
   function handleAddUser(newUsers) {
     setStudents([...students, newUsers]);
+  }
+
+  function handleDeleteUser(id) {
+    setStudents(students.filter((student) => student.id !== id));
+  }
+
+  function handleEditUser(id, updatedInfo) {
+    setStudents(
+      students.map((student) => {
+        if (student.id === id) {
+          return updatedInfo;
+        } else {
+          return student;
+        }
+      })
+    );
   }
 
   return (
@@ -32,7 +32,11 @@ const App = () => {
           <UsersForm handleAddUser={handleAddUser} />
         </div>
         <div className="w-full bg-yellow-100">
-          <Users users={students} />
+          <Users
+            handleEditUser={handleEditUser}
+            users={students}
+            handleDeleteUser={handleDeleteUser}
+          />
         </div>
       </div>
     </>

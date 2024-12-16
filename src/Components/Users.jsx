@@ -1,6 +1,7 @@
 import React from "react";
+import EditUsersForm from "./EditUsersForm";
 
-const Users = ({ users }) => {
+const Users = ({ users, handleDeleteUser, handleEditUser }) => {
   return (
     <div>
       <div className="m-10">
@@ -9,13 +10,30 @@ const Users = ({ users }) => {
           style={{ listStyle: "decimal" }}
           className="flex flex-row flex-wrap gap-10"
         >
-          {users.map((user) => (
-            <li className="mb-5 border rounded-xl p-5 bg-slate-300">
-              <p>Name: {user.name}</p>
-              <p>Email: {user.email}</p>
-              <p>Gen: {user.gen}</p>
-            </li>
-          ))}
+          {users.map((user) => {
+            return (
+              <div
+                className="mb-5 border rounded-xl p-5 bg-slate-300"
+                key={user.id}
+              >
+                <li>
+                  <p>Name: {user.name}</p>
+                  <p>Email: {user.email}</p>
+                  <p>Gen: {user.gen}</p>
+                </li>
+                <div className="flex gap-5 mt-5">
+                  <EditUsersForm handleEditUser={handleEditUser} user={user} />
+
+                  <button
+                    className="btn btn-error"
+                    onClick={() => handleDeleteUser(user.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </ol>
       </div>
     </div>

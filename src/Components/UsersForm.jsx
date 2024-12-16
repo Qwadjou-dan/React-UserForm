@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdNumbers } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { IoMdPerson } from "react-icons/io";
+import { v4 as uuid } from "uuid";
 
 const UsersForm = ({ handleAddUser }) => {
   const [name, setName] = useState("");
@@ -22,7 +23,7 @@ const UsersForm = ({ handleAddUser }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleAddUser({ name, email, gen: Number(gen) });
+    handleAddUser({ name, email, gen: Number(gen), id: uuid() });
 
     setName("");
     setEmail("");
